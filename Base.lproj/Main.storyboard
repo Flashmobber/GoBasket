@@ -160,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="125.59999999999999" y="137.18140929535232"/>
+            <point key="canvasLocation" x="126" y="136"/>
         </scene>
         <!--Пользовательское соглашение-->
         <scene sceneID="b80-kx-LKz">
@@ -191,13 +191,13 @@
                     <navigationItem key="navigationItem" title="Пользовательское соглашение" id="8fo-nk-Pfc"/>
                     <connections>
                         <outlet property="textAgreements" destination="6S3-Xf-wsF" id="aKx-Zx-txG"/>
-                        <segue destination="bEe-FH-LaH" kind="unwind" identifier="unwindToLoginScr" unwindAction="unwindToLoginScrWithSegue:" id="X1o-Na-wJ5"/>
+                        <segue destination="bEe-FH-LaH" kind="unwind" identifier="unwindToLoginScr" unwindAction="unwindToLoginScr:" id="0Ij-pp-bNF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w1K-vW-AAc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="bEe-FH-LaH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1668" y="137"/>
+            <point key="canvasLocation" x="1620" y="137"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jlg-gM-Ptu">
@@ -363,7 +363,7 @@
                     <connections>
                         <outlet property="lblPhoneNumber" destination="frP-hS-LAx" id="Mv6-rp-Fy3"/>
                         <outlet property="resumeBtn" destination="0Qj-lb-gCZ" id="h9v-GU-pDm"/>
-                        <segue destination="Qdp-I3-n41" kind="unwind" unwindAction="unwindToRecoveryPswdViewWithSegue:" id="CvX-qg-pZE"/>
+                        <segue destination="Qdp-I3-n41" kind="unwind" identifier="unwindToLoginFromORC" unwindAction="unwindToLoginFromORC:" id="0GC-wr-afc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4i-BK-QRI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

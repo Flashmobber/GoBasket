@@ -173,7 +173,6 @@ class passwordRecoveryView: UIViewController, UITextFieldDelegate {
 
         let boundary = "Boundary-\(UUID().uuidString)"
         var body = ""
-        let _: Error? = nil
         for param in parameters {
           if param["disabled"] == nil {
             let paramName = param["key"]!
@@ -202,9 +201,7 @@ class passwordRecoveryView: UIViewController, UITextFieldDelegate {
         request.httpBody = postData
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-          guard let data = data else {
-            return
-          }
+          guard let data = data else { return }
             do {
                 let jsonStr = try JSONDecoder().decode(jsonData.self, from: data)
                 self.jsonStructure = jsonStr
@@ -224,14 +221,5 @@ class passwordRecoveryView: UIViewController, UITextFieldDelegate {
             return false
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

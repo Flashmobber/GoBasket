@@ -69,13 +69,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     //=========
     
-    @IBAction func unwindToLoginScr(segue: UIStoryboardSegue) {
+    @IBAction func unwindToLoginScr(_ segue: UIStoryboardSegue) {
         // возврат с окна пользовательского соглашения
     }
     
-    @IBAction func unwindToLoginFromPswdRecovery(segue: UIStoryboardSegue) {
+    @IBAction func unwindToLoginFromPswdRecovery(_ segue: UIStoryboardSegue) {
         // возврат с окна восстановления пароля
     }
+    
+    @IBAction func unwindToLoginFromORC(_ segue: UIStoryboardSegue) {
+        // возврат с окна восстановления пароля
+    }
+
 
     @objc func textFieldShouldClear(_ textField: UITextField) -> Bool {
         // обработчик нажатия Clear Button в login.UITextField

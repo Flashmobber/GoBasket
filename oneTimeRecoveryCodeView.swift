@@ -10,16 +10,23 @@ import UIKit
 
 class oneTimeRecoveryCodeView: UIViewController, DigitInputViewDelegate {
 
+    struct jsonData: Decodable {
+        let data: Int8?
+        let message: String?
+        let status: Int8
+    }
+
     
     @IBOutlet weak var lblPhoneNumber: UILabel!
     @IBOutlet weak var resumeBtn: UIButton!
     
+    var jsonStructure: jsonData!
     var phoneNumber: String!
     var digitInput = DigitInputView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    self.navigationController?.navigationBar.standardAppearance.setBackIndicatorImage(UIImage(named: "arrowRight"), transitionMaskImage: UIImage(named: "arrowRight"))
+        self.navigationController?.navigationBar.standardAppearance.setBackIndicatorImage(UIImage(named: "arrowRight"), transitionMaskImage: UIImage(named: "arrowRight"))
         self.navigationController?.navigationBar.tintColor = .none
         self.navigationController?.navigationBar.tintColor = UIColor(named: "#black&white")
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -82,6 +89,89 @@ class oneTimeRecoveryCodeView: UIViewController, DigitInputViewDelegate {
     
     @IBAction func pressResumeBtn(_ sender: UIButton) {
 
+        let semaphore = DispatchSemaphore (value: 0)
+
+        let parameters = [
+          [
+            "key": "login",
+            "value": lblPhoneNumber.text!.filter("0123456789".contains),
+            "type": "text"
+          ],
+          [
+            "key": "code",
+            "value": digitInput.text,
+            "type": "text"
+          ]] as [[String : Any]]
+
+        let boundary = "Boundary-\(UUID().uuidString)"
+        var body = ""
+        for param in parameters {
+          if param["disabled"] == nil {
+            let paramName = param["key"]!
+            body += "--\(boundary)\r\n"
+            body += "Content-Disposition:form-data; name=\"\(paramName)\""
+            let paramType = param["type"] as! String
+            if paramType == "text" {
+              let paramValue = param["value"] as! String
+              body += "\r\n\r\n\(paramValue)\r\n"
+            } else {
+              let paramSrc = param["src"] as! String
+              let fileData = (try? NSData(contentsOfFile:paramSrc, options:[]) as Data)!
+              let fileContent = String(data: fileData, encoding: .utf8)!
+              body += "; filename=\"\(paramSrc)\"\r\n"
+                + "Content-Type: \"content-type header\"\r\n\r\n\(fileContent)\r\n"
+            }
+          }
+        }
+        body += "--\(boundary)--\r\n";
+        let postData = body.data(using: .utf8)
+
+        var request = URLRequest(url: URL(string: "https://babasket.com.ua:8088/auth/activate")!,timeoutInterval: Double.infinity)
+        request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+        request.httpMethod = "POST"
+        request.httpBody = postData
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          guard let data = data else { return }
+          do {
+              let jsonStr = try JSONDecoder().decode(jsonData.self, from: data)
+              self.jsonStructure = jsonStr
+          } catch let errorJSON {
+              print("Error JSON decode: ", errorJSON)
+          }
+    
+          semaphore.signal()
+        }
+
+        task.resume()
+        semaphore.wait()
+        
+        if jsonStructure.status == 0 {
+           showMessage(titleStr: "Код принят",
+                       messageStr: """
+                                   Новый пароль отправлен вам СМС сообщением.
+                                   В целях безопасности храните его в надежном месте.
+                                   Никому не передавайте свой пароль!!!
+                                   """, handler: { action in
+                                    self.performSegue(withIdentifier: "unwindToLoginFromORC", sender: nil)
+            })
+        } else if jsonStructure.status == 20 {
+            showMessage(titleStr: "Код не принят", messageStr: "Вы ввели не правильный код." + String(jsonStructure.status), handler: nil)
+        } else {
+            showMessage(titleStr: "Ошибка!", messageStr: "Error code: " + String(jsonStructure.status), handler: nil)
+        }
     }
 
+    func showMessage (titleStr: String!, messageStr: String!, handler: ((UIAlertAction) -> Void)?) {
+        let alertWindow = UIAlertController(
+        title: titleStr,
+        message: messageStr,
+        preferredStyle: UIAlertController.Style.alert)
+        alertWindow.addAction(UIAlertAction(title: "Закрыть", style: .cancel, handler: handler))
+        alertWindow.view.tintColor = UIColor(named: "#black&white")
+        self.present(alertWindow, animated: true, completion: nil)
+    }
+
+    
 }
