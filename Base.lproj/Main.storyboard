@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9YF-hl-3Ns">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="loginView" id="BYZ-38-t0r" customClass="ViewController" customModule="GoBasket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="LoginViewController" customModule="GoBasket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uQE-Hk-zyn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -147,6 +147,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ttv-ZJ-KN7"/>
                     </view>
+                    <navigationItem key="navigationItem" id="bgN-fL-chU"/>
                     <connections>
                         <outlet property="lblLogin" destination="8do-lE-tVo" id="uf4-03-xLh"/>
                         <outlet property="lblPassword" destination="FOS-BH-PSl" id="Dh6-a2-lVA"/>
@@ -161,6 +162,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="126" y="136"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Hqq-Kd-xe5">
+            <objects>
+                <viewController id="zrC-P7-mR7" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1b5-1y-YzM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yY9-Fb-6Rf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem id="QLx-O5-mIV">
+                                        <nil key="title"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" name="#iceBlue"/>
+                        <viewLayoutGuide key="safeArea" id="RRc-LU-aeo"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CMf-0J-xum" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="908" y="134"/>
         </scene>
         <!--Пользовательское соглашение-->
         <scene sceneID="b80-kx-LKz">
@@ -197,7 +224,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w1K-vW-AAc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="bEe-FH-LaH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1620" y="137"/>
+            <point key="canvasLocation" x="908" y="866"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jlg-gM-Ptu">
@@ -216,7 +243,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iop-If-sS0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="902" y="136"/>
+            <point key="canvasLocation" x="126" y="866"/>
         </scene>
         <!--Восстановление пароля-->
         <scene sceneID="HMa-mC-5dE">
@@ -295,14 +322,14 @@
                         <outlet property="lblLoginRec" destination="npW-52-AXe" id="a1q-GT-UFp"/>
                         <outlet property="loginRec" destination="Zof-Db-NE4" id="hJ2-8S-7DQ"/>
                         <outlet property="recoveryBtn" destination="pLl-R5-SfY" id="xhN-Zq-BX6"/>
-                        <segue destination="EAP-8x-zP5" kind="unwind" identifier="unwindToLoginFromPswdRecovery" unwindAction="unwindToLoginFromPswdRecoveryWithSegue:" id="jLl-gJ-RyP"/>
                         <segue destination="8I0-gT-1mG" kind="show" identifier="oneTimeRecoveryCodeSegue" id="s3H-lA-SVH"/>
+                        <segue destination="EAP-8x-zP5" kind="unwind" identifier="unwindToLoginFromPswdRecovery" unwindAction="unwindToLoginFromPswdRecovery:" id="5ZL-AS-mrH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ccY-W9-62k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="EAP-8x-zP5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="901.60000000000002" y="838.83058470764627"/>
+            <point key="canvasLocation" x="1642" y="-582"/>
         </scene>
         <!--One Time Recovery Code View-->
         <scene sceneID="fa4-RR-0LX">
@@ -319,7 +346,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Код отправлен на номер " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frP-hS-LAx">
-                                <rect key="frame" x="102.5" y="135" width="170.5" height="17"/>
+                                <rect key="frame" x="102" y="135" width="171" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" name="#lightGreyBlue"/>
                                 <nil key="highlightedColor"/>
@@ -369,7 +396,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4i-BK-QRI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Qdp-I3-n41" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1620" y="838.83058470764627"/>
+            <point key="canvasLocation" x="2361" y="-581"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nht-wW-Ln5">
@@ -389,7 +416,89 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4N8-Fc-wZd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="126" y="839"/>
+            <point key="canvasLocation" x="908" y="-581"/>
+        </scene>
+        <!--Intro Page View Controller-->
+        <scene sceneID="FkA-w1-pGo">
+            <objects>
+                <pageViewController storyboardIdentifier="introPageViewController" autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="9YF-hl-3Ns" customClass="introPageViewController" customModule="GoBasket" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bs5-Oi-MeT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1409" y="136"/>
+        </scene>
+        <!--Intro View Controller-->
+        <scene sceneID="2zG-Ja-4OG">
+            <objects>
+                <viewController storyboardIdentifier="introViewController" id="Qx8-A3-XBJ" customClass="introViewController" customModule="GoBasket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wb6-vO-EuX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vvu-Vj-Sbg">
+                                <rect key="frame" x="16" y="248.5" width="343" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="7se-bg-g37"/>
+                                    <constraint firstAttribute="height" constant="170" id="skm-He-4MK"/>
+                                </constraints>
+                            </imageView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="YBC-zj-zwV">
+                                <rect key="frame" x="168" y="600" width="39" height="37"/>
+                                <color key="pageIndicatorTintColor" name="#lightGreyBlue"/>
+                                <color key="currentPageIndicatorTintColor" name="#buttonEnable"/>
+                            </pageControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFJ-nL-Yfq">
+                                <rect key="frame" x="16" y="453.5" width="343" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="78O-Lz-BvH"/>
+                                    <constraint firstAttribute="height" constant="43" id="DKd-A9-qUy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" name="#black&amp;white"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWh-HC-sYc">
+                                <rect key="frame" x="45" y="526" width="285" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="WjA-6i-gfJ"/>
+                                    <constraint firstAttribute="width" constant="285" id="u5x-ZD-78B"/>
+                                </constraints>
+                                <state key="normal" title="Пропустить">
+                                    <color key="titleColor" name="#lightGreyBlue"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="skipBtnPressed:" destination="Qx8-A3-XBJ" eventType="touchUpInside" id="ygX-ww-jxG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="#view"/>
+                        <constraints>
+                            <constraint firstItem="YBC-zj-zwV" firstAttribute="centerX" secondItem="yU7-3c-gCi" secondAttribute="centerX" id="FNu-yA-pJ3"/>
+                            <constraint firstItem="NWh-HC-sYc" firstAttribute="centerX" secondItem="yU7-3c-gCi" secondAttribute="centerX" id="Min-qD-pP5"/>
+                            <constraint firstItem="vvu-Vj-Sbg" firstAttribute="centerX" secondItem="yU7-3c-gCi" secondAttribute="centerX" id="UAi-qE-Zpp"/>
+                            <constraint firstItem="wFJ-nL-Yfq" firstAttribute="top" secondItem="vvu-Vj-Sbg" secondAttribute="bottom" constant="35" id="pND-B6-np4"/>
+                            <constraint firstItem="yU7-3c-gCi" firstAttribute="bottom" secondItem="NWh-HC-sYc" secondAttribute="bottom" constant="90" id="q9Q-RA-rcL"/>
+                            <constraint firstItem="vvu-Vj-Sbg" firstAttribute="centerY" secondItem="yU7-3c-gCi" secondAttribute="centerY" id="rI2-2w-kut"/>
+                            <constraint firstItem="yU7-3c-gCi" firstAttribute="bottom" secondItem="YBC-zj-zwV" secondAttribute="bottom" constant="30" id="sFg-sh-Z1y"/>
+                            <constraint firstItem="wFJ-nL-Yfq" firstAttribute="centerX" secondItem="yU7-3c-gCi" secondAttribute="centerX" id="vcS-a0-3DM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="yU7-3c-gCi"/>
+                    </view>
+                    <connections>
+                        <outlet property="btnIntroPage" destination="NWh-HC-sYc" id="SIF-uf-VyL"/>
+                        <outlet property="introImage" destination="vvu-Vj-Sbg" id="BgE-l7-4uc"/>
+                        <outlet property="introPageControl" destination="YBC-zj-zwV" id="CY1-EF-nYR"/>
+                        <outlet property="lblIntroPage" destination="wFJ-nL-Yfq" id="nfh-ki-Afu"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="loginScreenSegue" id="7Eb-hW-rfz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bw1-tL-ogD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-674.39999999999998" y="134.48275862068968"/>
         </scene>
     </scenes>
     <resources>
@@ -401,6 +510,12 @@
         </namedColor>
         <namedColor name="#buttonDisable">
             <color red="0.6589999794960022" green="0.68999999761581421" blue="0.70999997854232788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="#buttonEnable">
+            <color red="0.14100000262260437" green="0.14499999582767487" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="#iceBlue">
+            <color red="0.95294117647058818" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="#lightGreyBlue">
             <color red="0.6589999794960022" green="0.68999999761581421" blue="0.70999997854232788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
